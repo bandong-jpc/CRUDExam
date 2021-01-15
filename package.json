@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/bandong-jpc/CRUDExam/issues"
   },
-  "homepage": "https://github.com/bandong-jpc/CRUDExam#readme"
+  "homepage": "https://github.com/bandong-jpc/CRUDExam#readme",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  }
 }
