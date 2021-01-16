@@ -12,16 +12,28 @@ router.get("/all", (req, res) => {
 });
 
 router.post("/add", (req, res) => {
-  console.log(req.body);
   const { name, qty, amount } = req.body;
 
   var query = `INSERT INTO items (name, qty, amount) VALUES ('${name}', ${qty}, ${amount})`;
 
-  console.log(query);
   dbConn.query(query, (err, result) => {
     if (err) return res.status(500).json({ body: "Error: " + err.message });
     else {
       return res.status(200).json({ body: "Row inserted" });
+    }
+  });
+});
+
+router.put("/update/:id", (req, res) => {
+  const { id } = req.params;
+  const { name, qty, amount } = req.body;
+
+  var query = `UPDATE items SET name = ?, qty = ?, amount = ?  WHERE id = ${id}`;
+
+  dbConn.query(query, [name, qty, amount], (err, resulty) => {
+    if (err) return res.status(500).json({ body: "Error: " + err.message });
+    else {
+      return res.status(200).json({ body: "Row updated" });
     }
   });
 });
