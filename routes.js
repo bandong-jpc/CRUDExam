@@ -30,10 +30,23 @@ router.put("/update/:id", (req, res) => {
 
   var query = `UPDATE items SET name = ?, qty = ?, amount = ?  WHERE id = ${id}`;
 
-  dbConn.query(query, [name, qty, amount], (err, resulty) => {
+  dbConn.query(query, [name, qty, amount], (err, result) => {
     if (err) return res.status(500).json({ body: "Error: " + err.message });
     else {
       return res.status(200).json({ body: "Row updated" });
+    }
+  });
+});
+
+router.delete("/delete/:id", (req, res) => {
+  const { id } = req.params;
+
+  var query = `DELETE FROM items WHERE id = ${id}`;
+
+  dbConn.query(query, (err, result) => {
+    if (err) return res.status(500).json({ body: "Error: " + err.message });
+    else {
+      return res.status(200).json({ body: "Row deleted" });
     }
   });
 });
